@@ -21,7 +21,7 @@ pip3 install Flask
 
 ## Step 2: Set Up Flask Application
 
-- Create a Directory for Your Flask App:=
+- Create a Directory for Your Flask App
 - Choose a suitable location, like your home directory:
 ```
 mkdir ~/myflaskapp
