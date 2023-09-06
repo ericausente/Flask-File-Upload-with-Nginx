@@ -1,7 +1,43 @@
 # Flask File Upload with Nginx Reverse Proxy
 A demonstration of file uploads using Flask and Nginx reverse proxy with `client_max_body_size` configuration.
 
-This is a step-by-step guide to set up the Nginx configuration, Flask application, and server environment to allow file uploads and demonstrate the client_max_body_size in action.
+```
+High-level overview of the flow between NGINX, Flask (Python), and your web application for handling file uploads and demonstrating the client_max_body_size directive in action:
+
+    User Interaction:
+        A user accesses your website through their web browser.
+
+    NGINX as Reverse Proxy:
+        NGINX serves as a reverse proxy server that listens for incoming HTTP requests from users.
+
+    Request Routing:
+        When a user makes a request (e.g., uploads a file), NGINX routes the request to the appropriate location based on the URL. In your case, requests to the /upload path are directed to your Flask application.
+
+    Flask Application (Python):
+        NGINX forwards the request to your Flask application running on the same server or another server, depending on your configuration.
+        Your Flask application handles the request. Specifically, the /upload route is responsible for processing file uploads.
+
+    File Upload Handling:
+        When a file is uploaded from the user's browser, it's sent as part of the HTTP POST request to the /upload route of your Flask application.
+        Flask processes the uploaded file using the request.files object and saves it to a specified location on the server's file system.
+
+    client_max_body_size in NGINX:
+        NGINX ensures that the client_max_body_size directive is applied to the incoming request.
+        If the uploaded file size exceeds the configured limit (e.g., 50MB), NGINX returns an error response (e.g., "413 Request Entity Too Large") without forwarding the request to Flask.
+
+    Response Back to User:
+        Depending on the outcome of the file upload handling in Flask, a response is generated.
+        Success: If the file upload is successful, Flask sends a response indicating success.
+        Failure: If there are any issues with the upload, Flask sends an appropriate error response.
+
+    NGINX Response to User:
+        NGINX receives the response from Flask and forwards it back to the user's browser.
+
+    User Feedback:
+        The user's browser displays the response received from the server, whether it's a success message or an error message.
+```
+        
+This is the step-by-step guide to set up the Nginx configuration, Flask application, and server environment to allow file uploads and demonstrate the client_max_body_size in action.
 For this guide, we'll assume you're using an Ubuntu-based system.
 
 ## Step 1: Install Required Software
