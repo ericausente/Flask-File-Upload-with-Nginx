@@ -150,4 +150,13 @@ location / {
   - Upload a Large File
   - Use the file upload form again, but this time, try uploading a file larger than 50MB. You should receive an error indicating that the file size exceeds the allowed limit.
 
+
+Run the Flask application in the background using nohup:
+```
+nohup python3 app.py &
+```
+- nohup: Stands for "no hang up." It allows the application to continue running even after you close the terminal.
+- &: Runs the command in the background.
+
+    
 That's it! You've set up the Nginx configuration, Flask application, and demonstrated the use of the client_max_body_size directive to control file upload sizes. Make sure to replace placeholders like your_domain.com, /path/to/your/uploads/folder, and other values with your actual information.
